@@ -16,9 +16,18 @@ $ npx sequelize-cli init
 > "dialect": "postgres"
 > },
 
+> models>index.js> change:
+> line16> sequelize = new Sequelize(config.url, config);
+
 $ npm install express
 
 $ npm install cors
+
+$ npm install bcrypt
+
+$ npm install jsonwebtoken
+
+$ git push -u origin main
 
 $ npx sequelize-cli model:generate --name ABC123 --attributes ABC123:string,ABC123:integer,ABC123:boolean
 
