@@ -11,8 +11,14 @@ module.exports = (sequelize, DataTypes) => {
       users.hasOne(models.services);
       users.hasMany(models.images);
       users.belongsToMany(models.users, {
+        as: "children",
+        foreignKey: "sevicerId",
         through: "favorites",
+      });
+      users.belongsToMany(models.users, {
+        as: "parents",
         foreignKey: "userId",
+        through: "favorites",
       });
     }
   }
@@ -21,8 +27,8 @@ module.exports = (sequelize, DataTypes) => {
       name: { type: DataTypes.STRING, allowNull: false },
       email: { type: DataTypes.STRING, allowNull: false, unique: true },
       password: { type: DataTypes.STRING, allowNull: false },
-      imageUrl: DataTypes.STRING,
-      provideService: DataTypes.BOOLEAN,
+      imageUrl: { type: DataTypes.STRING, allowNull: false },
+      provideService: { type: DataTypes.BOOLEAN, allowNull: false },
     },
     {
       sequelize,

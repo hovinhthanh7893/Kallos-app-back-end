@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const { Router } = require("express");
 const { toJWT } = require("../auth/jwt");
 const authMiddleware = require("../auth/middleware");
-const User = require("../models/").users;
+const Users = require("../models").users;
 const { SALT_ROUNDS } = require("../config/constants");
 
 const router = new Router();
@@ -17,7 +17,7 @@ router.post("/login", async (request, response, next) => {
         .send({ message: "Please provide both email and password" });
     }
     //everything is enough
-    const user = await User.findOne({ where: { email } });
+    const user = await Users.findOne({ where: { email } });
     if (!user || !bcrypt.compareSync(password, user.password)) {
       return response.status(400).send({
         message: "Incorrect email or password",
@@ -39,17 +39,18 @@ router.post("/login", async (request, response, next) => {
 
 // http:4000/auth/signup
 router.post("/signup", async (request, response) => {
-  const { email, password, name, isArtist } = request.body;
-  if (!email || !password || !name) {
+  const { email, password, name, imageUrl, provideService } = request.body;
+  if (!email || !password || !name || !imageUrl || !provideService) {
     return response
       .status(400)
       .send({ message: "Missing attributes for new profile" });
   }
   try {
-    const newUser = await User.create({
+    const newUser = await Users.create({
       name,
       email,
-      isArtist,
+      imageUrl,
+      provideService,
       password: bcrypt.hashSync(password, SALT_ROUNDS),
     });
     //don't send back the password hash

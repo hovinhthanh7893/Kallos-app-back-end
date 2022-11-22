@@ -24,9 +24,11 @@ module.exports = {
       },
       imageUrl: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       provideService: {
         type: Sequelize.BOOLEAN,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
