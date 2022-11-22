@@ -29,6 +29,8 @@ $ npm install jsonwebtoken
 
 $ git push -u origin main
 
+// Create tables and seeds
+
 $ npx sequelize-cli model:generate --name ABC123 --attributes ABC123:string,ABC123:integer,ABC123:boolean
 
 $ npx sequelize-cli seed:generate --name ABC123
@@ -40,5 +42,8 @@ $ npx sequelize-cli db:migrate
 $ npx sequelize-cli db:seed:all
 
 $ npx sequelize-cli db:migrate:undo:all
+
+// Create index.js
+// Copy folder auth
 
 $ npx nodemon index.js
