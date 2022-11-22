@@ -33,6 +33,8 @@ $ npx sequelize-cli model:generate --name ABC123 --attributes ABC123:string,ABC1
 
 $ npx sequelize-cli seed:generate --name ABC123
 
+$ npx sequelize-cli migration:generate --name ABC123
+
 $ npx sequelize-cli db:migrate
 
 $ npx sequelize-cli db:seed:all
