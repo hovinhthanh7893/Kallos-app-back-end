@@ -17,7 +17,7 @@ router.post("/login", async (request, response, next) => {
         .send({ message: "Please provide both email and password" });
     }
     //everything is enough
-    const user = await Users.findOne({ where: { email } });
+    const user = await Users.findOne({ where: { email }, include: [Users] });
     if (!user || !bcrypt.compareSync(password, user.password)) {
       return response.status(400).send({
         message: "Incorrect email or password",
@@ -71,7 +71,7 @@ router.post("/signup", async (request, response) => {
   }
 });
 
-// The /me endpoint can be used to:
+// http:4000/auth/me
 // - get the users email & name using only their token
 // - checking if a token is (still) valid
 router.get("/me", authMiddleware, async (req, res) => {

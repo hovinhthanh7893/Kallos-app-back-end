@@ -1,13 +1,19 @@
 const { Router } = require("express");
 const router = new Router();
 const Users = require("../models/").users;
+const Services = require("../models/").services;
 const auth = require("../auth/middleware");
 
-// fetch one user by id http:4000/user/:id
+// fetch one servicer by id http:4000/user/:id
 router.get("/:id", async (request, response, next) => {
   const { id } = request.params;
-  const userById = await Users.findByPk(id, { include: Users });
-  response.send(userById);
+  const userById = await Users.findByPk(id, { include: Services });
+  if (!userById) {
+    return response.status(404).send({ message: "Can not find this person" });
+  } else {
+    delete userById.dataValues["password"];
+    return response.status(200).send(userById.dataValues);
+  }
 });
 
 // delete user http:4000/user/delete/:id
