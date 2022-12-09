@@ -8,12 +8,17 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      services.belongsTo(models.users);
+      services.belongsTo(models.users, { foreignKey: "userId" });
+      services.belongsToMany(models.users, {
+        through: "favorites",
+        foreignKey: "servicerId",
+      });
     }
   }
   services.init(
     {
       area: DataTypes.STRING,
+      star: DataTypes.FLOAT,
       styling: DataTypes.BOOLEAN,
       stylingPrice: DataTypes.INTEGER,
       extension: DataTypes.BOOLEAN,

@@ -12,6 +12,9 @@ module.exports = {
       area: {
         type: Sequelize.STRING,
       },
+      star: {
+        type: Sequelize.FLOAT,
+      },
       styling: {
         type: Sequelize.BOOLEAN,
       },

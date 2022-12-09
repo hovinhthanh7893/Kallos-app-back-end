@@ -17,7 +17,7 @@ router.post("/login", async (request, response, next) => {
         .send({ message: "Please provide both email and password" });
     }
     //everything is enough
-    const user = await Users.findOne({ where: { email }, include: [Users] });
+    const user = await Users.findOne({ where: { email } });
     if (!user || !bcrypt.compareSync(password, user.password)) {
       return response.status(400).send({
         message: "Incorrect email or password",
@@ -39,8 +39,8 @@ router.post("/login", async (request, response, next) => {
 
 // http:4000/auth/signup
 router.post("/signup", async (request, response) => {
-  const { email, password, name, imageUrl, provideService } = request.body;
-  if (!email || !password || !name || !imageUrl || !provideService) {
+  const { email, password, name, provideService } = request.body;
+  if (!email || !password || !name || !provideService) {
     return response
       .status(400)
       .send({ message: "Missing attributes for new profile" });
@@ -49,7 +49,6 @@ router.post("/signup", async (request, response) => {
     const newUser = await Users.create({
       name,
       email,
-      imageUrl,
       provideService,
       password: bcrypt.hashSync(password, SALT_ROUNDS),
     });

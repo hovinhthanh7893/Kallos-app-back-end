@@ -10,15 +10,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       users.hasOne(models.services);
       users.hasMany(models.images);
-      users.belongsToMany(models.users, {
-        as: "children",
-        foreignKey: "sevicerId",
+      users.belongsToMany(models.services, {
         through: "favorites",
-      });
-      users.belongsToMany(models.users, {
-        as: "parents",
         foreignKey: "userId",
-        through: "favorites",
       });
     }
   }

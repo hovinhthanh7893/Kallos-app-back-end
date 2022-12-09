@@ -8,6 +8,7 @@ module.exports = {
       [
         {
           area: "Amsterdam",
+          star: 3,
           styling: true,
           stylingPrice: 50,
           extension: true,
@@ -18,6 +19,7 @@ module.exports = {
         },
         {
           area: "Utrecht",
+          star: 4.5,
           styling: true,
           stylingPrice: 50,
           extension: false,
@@ -27,6 +29,7 @@ module.exports = {
         },
         {
           area: "Amsterdam",
+          star: 3.7,
           styling: true,
           stylingPrice: 60,
           extension: false,
@@ -35,6 +38,7 @@ module.exports = {
         },
         {
           area: "Rotterdam",
+          star: 4,
           styling: true,
           stylingPrice: 55,
           extension: true,
@@ -44,6 +48,7 @@ module.exports = {
         },
         {
           area: "Amsterdam",
+          star: 3.5,
           styling: true,
           stylingPrice: 40,
           extension: true,

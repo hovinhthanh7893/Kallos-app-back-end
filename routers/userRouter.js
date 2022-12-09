@@ -2,17 +2,34 @@ const { Router } = require("express");
 const router = new Router();
 const Users = require("../models/").users;
 const Services = require("../models/").services;
+const Favorites = require("../models/").favorites;
 const auth = require("../auth/middleware");
 
-// fetch one servicer by id http:4000/user/:id
-router.get("/:id", async (request, response, next) => {
+// fetch one servicer by id http:4000/user/service/:id
+router.get("/service/:id", async (request, response, next) => {
   const { id } = request.params;
-  const userById = await Users.findByPk(id, { include: Services });
-  if (!userById) {
-    return response.status(404).send({ message: "Can not find this person" });
-  } else {
-    delete userById.dataValues["password"];
-    return response.status(200).send(userById.dataValues);
+  try {
+    const serviceById = await Services.findOne({ where: { userId: id } });
+    if (!serviceById) {
+      return response
+        .status(404)
+        .send({ message: "Can not find this person's service" });
+    } else {
+      return response.status(200).send(serviceById);
+    }
+  } catch (e) {
+    response.status(404).send({ message: e });
+  }
+});
+
+//fetch favorite list by id http:4000/user/favorite/:id
+router.get("/favorite/:id", async (request, response) => {
+  const { id } = request.params;
+  try {
+    const getFavById = await Favorites.findAll({ where: { userId: id } });
+    return response.send(getFavById);
+  } catch (e) {
+    response.status(404).send({ message: e });
   }
 });
 
