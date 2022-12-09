@@ -16,7 +16,7 @@ module.exports = {
           provideService: false,
         },
         {
-          name: "The",
+          name: "Gudmund367",
           email: "the@the",
           password: bcrypt.hashSync("the", 10),
           imageUrl:
@@ -32,7 +32,7 @@ module.exports = {
           provideService: false,
         },
         {
-          name: "Lam",
+          name: "Margaux393",
           email: "lam@lam",
           password: bcrypt.hashSync("lam", 10),
           imageUrl:
@@ -48,7 +48,7 @@ module.exports = {
           provideService: false,
         },
         {
-          name: "Tam",
+          name: "Wafiya3953",
           email: "tam@tam",
           password: bcrypt.hashSync("tam", 10),
           imageUrl:
@@ -64,7 +64,7 @@ module.exports = {
           provideService: false,
         },
         {
-          name: "Nguyen",
+          name: "Leopold23423",
           email: "nguyen@nguyen",
           password: bcrypt.hashSync("nguyen", 10),
           imageUrl:
@@ -80,7 +80,7 @@ module.exports = {
           provideService: false,
         },
         {
-          name: "Trinh",
+          name: "Fridumar093",
           email: "trinh@trinh",
           password: bcrypt.hashSync("trinh", 10),
           imageUrl:
